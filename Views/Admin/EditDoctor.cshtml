@@ -1,0 +1,251 @@
+﻿
+@model hospitalMS.ViewModels.DoctorVM
+
+@{
+    ViewBag.Title = "Edit Doctor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="dashboard-content">
+    <div class="container-fluid px-3 px-lg-4 py-4">
+
+        <div class="page-heading">
+            <div class="page-heading-copy">
+                <span class="page-icon">
+                    <i class="bi bi-pencil-square"></i>
+                </span>
+
+                <div>
+                    <p class="eyebrow mb-1">Management</p>
+                    <h1 class="h3 mb-1">Edit Doctor</h1>
+                    <p class="text-muted mb-0">
+                        Update doctor information.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <section class="row g-3">
+            <div class="col-12 col-xl-8">
+
+                <form action="@Url.Action("EditDoctor","Admin")"
+                      method="post"
+                      enctype="multipart/form-data">
+
+                    @Html.HiddenFor(x => x.Id)
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+                            <div>
+
+                                <h2 class="h5 mb-1 section-title">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <span>Edit Doctor</span>
+                                </h2>
+
+                                <p class="text-muted mb-0">
+                                    Update doctor information.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+
+                            <!-- Doctor Name -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Doctor Name
+                                </label>
+
+                                @Html.TextBoxFor(x => x.Name,
+                                new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Doctor Name"
+                                })
+
+                            </div>
+
+                            <!-- Department -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Department
+                                </label>
+
+                                @Html.DropDownListFor(x => x.DepartmentId,
+                                (SelectList)ViewBag.Departments,
+                                "Select Department",
+                                new
+                                {
+                                    @class = "form-select"
+                                })
+
+                            </div>
+
+                            <!-- Specialization -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Specialization
+                                </label>
+
+                                @Html.TextBoxFor(x => x.Specialization,
+                                new
+                                {
+                                    @class = "form-control"
+                                })
+
+                            </div>
+
+                            <!-- Fee -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Consultation Fee
+                                </label>
+
+                                @Html.TextBoxFor(x => x.Fee,
+                                new
+                                {
+                                    @class = "form-control"
+                                })
+
+                            </div>
+
+                            <!-- Availability -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Availability
+                                </label>
+
+                                @Html.DropDownListFor(x => x.IsAvailable,
+
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem()
+                                    {
+                                        Text="Available",
+                                        Value="true"
+                                    },
+
+                                    new SelectListItem()
+                                    {
+                                        Text="Not Available",
+                                        Value="false"
+                                    }
+
+                                },
+
+                                new
+                                {
+                                    @class = "form-select"
+                                })
+
+                            </div>
+
+                            <!-- Available Days -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Available Days
+                                </label>
+
+                                @Html.TextBoxFor(x => x.AvailableDays,
+                                new
+                                {
+                                    @class = "form-control"
+                                })
+
+                            </div>
+
+                            <!-- Available Time -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Available Time
+                                </label>
+
+                                @Html.TextBoxFor(x => x.AvailableTime,
+                                new
+                                {
+                                    @class = "form-control"
+                                })
+
+                            </div>
+
+                            <!-- Current Image -->
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Current Image
+                                </label>
+
+                                <br />
+
+                                @if (!string.IsNullOrWhiteSpace(Model.Image))
+                                {
+                                    <img src="@Url.Content(Model.Image)"
+                                         width="120"
+                                         height="120"
+                                         class="rounded border" />
+                                }
+                                else
+                                {
+                                    <img src="~/assets/images/doctors/default.png"
+                                         width="120"
+                                         height="120"
+                                         class="rounded border" />
+                                }
+
+                            </div>
+
+                            <!-- New Image -->
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Change Image
+                                </label>
+
+                                <input type="file"
+                                       name="ImageFile"
+                                       class="form-control" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+
+                            <button class="btn btn-primary">
+
+                                <i class="bi bi-check-circle"></i>
+
+                                Update Doctor
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+    </div>
+</main>

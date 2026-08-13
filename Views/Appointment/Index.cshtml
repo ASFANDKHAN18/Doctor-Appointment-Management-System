@@ -1,0 +1,142 @@
+﻿@model hospitalMS.Models.AppointmentViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block text-center">
+                    <span class="text-white">Book your Seat</span>
+                    <h1 class="text-capitalize mb-5 text-lg">Appoinment</h1>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="appoinment section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mt-3">
+                    <div class="feature-icon mb-3">
+                        <i class="icofont-support text-lg"></i>
+                    </div>
+                    <span class="h3">Call for an Emergency Service!</span>
+                    <h2 class="text-color mt-3">+84 789 1256 </h2>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="appoinment-wrap mt-5 mt-lg-0 pl-lg-5">
+                    <h2 class="mb-2 title-color">Book an appoinment</h2>
+                    <p class="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
+                    <h3> @ViewBag.Doctor.Name</h3>
+                    <p> <strong>Department:</strong> @ViewBag.Doctor.Department.Name</p>
+                    <p>
+                        <strong>Available Days:</strong>
+                        @ViewBag.Doctor.AvailableDays
+                    </p>
+                    <p>
+                        <strong>Available Time:</strong>
+                        @ViewBag.Doctor.AvailableTime
+                    </p>
+
+
+
+                    <form class="appoinment-form" method="post" action="/Appointment/Create">
+                        <div class="row">
+
+                            <input type="hidden" name="DoctorId" value="@Model.DoctorId" />
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="Name"
+                                           value="@Model.Name"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Full Name" />
+                                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="Phone"
+                                           value="@Model.Phone"
+                                           type="number"
+                                           class="form-control"
+                                           placeholder="Phone Number" />
+                                    @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="Age"
+                                           value="@Model.Age"
+                                           type="number"
+                                           class="form-control"
+                                           placeholder="Age" />
+                                    @Html.ValidationMessageFor(x => x.Age, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <select name="Gender" class="form-control">
+                                        <option value="">Select Gender</option>
+                                        <option value="Male" @(Model.Gender == "Male" ? "selected" : "")>Male</option>
+                                        <option value="Female" @(Model.Gender == "Female" ? "selected" : "")>Female</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(x => x.Gender, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input name="AppointmentDate"
+                                           value="@Model.AppointmentDate"
+                                           type="date"
+                                           class="form-control"
+                                           min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                    @Html.ValidationMessageFor(x => x.AppointmentDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <select name="AppointmentTime" class="form-control">
+                                        <option value="">Select Appointment Time</option>
+
+                                        @foreach (var item in ViewBag.TimeSlots)
+                                        {
+                                            <option value="@item.Value"
+                                                    @(Model.AppointmentTime == item.Value ? "selected" : "")>
+                                                @item.Text
+                                            </option>
+                                        }
+                                    </select>
+
+                                    @Html.ValidationMessageFor(x => x.AppointmentTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-main btn-round-full">
+                            Make Appointment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

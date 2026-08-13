@@ -1,0 +1,155 @@
+﻿@model List<hospitalMS.Models.Appointment>
+
+@{
+    ViewBag.Title = "Appointments";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="dashboard-content">
+    <div class="container-fluid px-3 px-lg-4 py-4">
+
+        <div class="page-heading">
+            <div class="page-heading-copy">
+                <span class="page-icon"><i class="bi bi-calendar-check"></i></span>
+
+                @if (TempData["Success"] != null)
+                {
+                    <script>
+                        window.onload = function () {
+                            Swal.fire({ icon: 'success', title: 'Success', text: '@TempData["Success"]' });
+                        };
+                    </script>
+                }
+
+                <div>
+                    <p class="eyebrow mb-1">Management</p>
+                    <h1 class="h3 mb-1">Appointments</h1>
+                </div>
+            </div>
+        </div>
+
+        <section class="panel mt-3">
+
+            <div class="panel-header">
+
+                <div>
+                    <h2 class="h5 mb-1 section-title">
+                        <i class="bi bi-table"></i>
+                        <span>Appointments</span>
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        View and manage all appointments.
+                    </p>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    <input class="form-control form-control-sm table-search"
+                           type="search"
+                           placeholder="Search Appointment"
+                           data-table-search="appointmentTable">
+
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle mb-0"
+                       id="appointmentTable"
+                       data-searchable-table>
+
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <div class="fw-semibold">@item.Patient.Name</div>
+                                    <small class="text-muted">@item.Patient.Phone</small>
+                                </td>
+
+                                <td>@item.Doctor.Name</td>
+
+                                <td>
+                                    @(item.AppointmentDate.HasValue
+                                    ? item.AppointmentDate.Value.ToString("dd MMM yyyy")
+                                    : "-")
+                                </td>
+
+                                <td>
+                                    @(item.AppointmentTime.HasValue
+                                    ? DateTime.Today.Add(item.AppointmentTime.Value).ToString("hh:mm tt")
+                                    : "-")
+                                </td>
+
+                                <td>
+
+                                    @if (item.Status == "Pending")
+                                    {
+                                        <span class="badge text-bg-warning">
+                                            Pending
+                                        </span>
+                                    }
+                                    else if (item.Status == "Approved")
+                                    {
+                                        <span class="badge text-bg-primary">
+                                            Approved
+                                        </span>
+                                    }
+                                    else if (item.Status == "Completed")
+                                    {
+                                        <span class="badge text-bg-success">
+                                            Completed
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge text-bg-danger">
+                                            Cancelled
+                                        </span>
+                                    }
+
+                                </td>
+
+                                <td>
+
+                                    <a href="@Url.Action("EditAppointment","Admin",new { id=item.Id })"
+                                       class="btn btn-warning btn-sm">
+
+                                        Edit
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mt-3">
+                <p class="text-muted small mb-0">Appointments List</p>
+            </div>
+
+        </section>
+
+    </div>
+</main>

@@ -1,0 +1,157 @@
+﻿@model hospitalMS.Models.Appointment
+
+@{
+    ViewBag.Title = "Edit Appointment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="dashboard-content">
+    <div class="container-fluid px-3 px-lg-4 py-4">
+
+        <div class="page-heading">
+            <div class="page-heading-copy">
+                <span class="page-icon"><i class="bi bi-calendar-check"></i></span>
+                <div>
+                    <p class="eyebrow mb-1">Management</p>
+                    <h1 class="h3 mb-1">Edit Appointment</h1>
+                    <p class="text-muted mb-0">Update appointment information.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="row g-3">
+
+            <div class="col-12 col-xl-8">
+
+                <form action="@Url.Action("EditAppointment","Admin")" method="post">
+
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.HiddenFor(x => x.PatientId)
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <h2 class="h5 mb-1 section-title">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <span>Edit Appointment</span>
+                                </h2>
+
+                                <p class="text-muted mb-0">
+                                    Update appointment details.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-3">
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Patient</label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       value="@Model.Patient.Name"
+                                       readonly />
+
+                            </div>
+
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Phone</label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       value="@Model.Patient.Phone"
+                                       readonly />
+
+                            </div>
+
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Doctor</label>
+
+                                @Html.DropDownListFor(x => x.DoctorId,
+                                (SelectList)ViewBag.Doctors,
+                                "Select Doctor",
+                                new { @class = "form-select" })
+
+                            </div>
+
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Appointment Date</label>
+
+                                @Html.TextBoxFor(x => x.AppointmentDate,
+                                "{0:yyyy-MM-dd}",
+                                new
+                                {
+                                    @class = "form-control",
+                                    type = "date"
+                                })
+
+                            </div>
+
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Appointment Time</label>
+
+                                @Html.TextBoxFor(x => x.AppointmentTime,
+                                "{0:hh\\:mm}",
+                                new
+                                {
+                                    @class = "form-control",
+                                    type = "time"
+                                })
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">Status</label>
+
+                                @Html.DropDownListFor(x => x.Status,
+                                (SelectList)ViewBag.StatusList,
+                                new
+                                {
+                                    @class = "form-select"
+                                })
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+
+                            <button class="btn btn-primary">
+
+                                <i class="bi bi-check-circle"></i>
+
+                                Update Appointment
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+</main>
