@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0e785db94c39487e81f8d51a4e1dcc95" Name="Diagram1">
+        <EntityTypeShape EntityType="HospitalDBModel.Appointment" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Bill" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Doctor" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Patient" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.Prescription" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HospitalDBModel.User" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="HospitalDBModel.FK__Appointme__Docto__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK__Appointme__Patie__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK__Bills__Appointme__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK__Prescript__Appoi__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK__Bills__PatientId__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="HospitalDBModel.FK__Doctors__UserId__3C69FB99" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HospitalDBModel.Department" Width="1.5" PointX="7.375" PointY="0.875" />
+        <AssociationConnector Association="HospitalDBModel.FK_Doctor_Department" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
