@@ -1,97 +1,119 @@
-Doctor Appointment Management System
+# Doctor Appointment Management System
 
-A web-based Doctor Appointment Management System developed using **ASP.NET MVC, Entity Framework and SQL Server**.
+A web-based doctor appointment management system built with **ASP.NET MVC 5, C#, Entity Framework 6, and SQL Server**.
 
 Features
 
-* Admin Dashboard
-* Doctor Management
-* Department Management
-* Patient Management
-* Patient Details
-* Appointment Management
-* Appointment Status Management
-* Search Patients
-* Search Appointments
-* Recent Appointments Dashboard
-* Doctor and Patient information
-* Responsive Admin Panel
-* SweetAlert notifications
+* Doctor listing and management
+* Department management
+* Online doctor appointment booking
+* Patient registration through appointment booking
+* Appointment availability checking
+* Doctor available days and time slots
+* Appointment status management
+* Patient list and patient details
+* Recent appointments dashboard
+* Admin dashboard with statistics
+* Search functionality for doctors, patients, and appointments
+* Responsive admin panel
 
-Technologies Used
+Admin Panel
 
-* ASP.NET MVC 5
-* C#
-* Entity Framework 6
-* SQL Server
-* HTML5
-* CSS3
-* Bootstrap
-* JavaScript
-* jQuery
-* Bootstrap Icons
-* SweetAlert2
+The admin panel provides:
 
-Main Modules
+* Dashboard
+* Doctors
+* Departments
+* Appointments
+* Patients
+* Patient details
+* Appointment status management
 
-Admin Dashboard
+Dashboard
 
-Displays:
+The dashboard displays:
 
-* Total Doctors
-* Total Patients
-* Total Appointments
-* Pending Appointments
-* Recent Appointments
+* Total doctors
+* Total patients
+* Total appointments
+* Pending appointments
+* Recent appointments
 
-Doctors
+Technologies
 
-Admin can view registered doctors along with their department and information.
-
-Departments
-
-Manage and display hospital departments.
-
-Patients
-
-Admin can view all registered patients and open their detailed profile.
-
-Appointments
-
-Admin can view appointments and manage their status such as:
-
-* Pending
-* Approved
-* Completed
-* Cancelled
+* **ASP.NET MVC 5**
+* **C#**
+* **Entity Framework 6**
+* **SQL Server**
+* **HTML5**
+* **CSS3**
+* **Bootstrap**
+* **JavaScript**
+* **jQuery**
+* **Bootstrap Icons**
+* **SweetAlert2**
 
 Database
 
-The project uses **SQL Server** with **Entity Framework Database First** approach.
+The application uses **SQL Server** with **Entity Framework Database First**.
 
-Main entities include:
+Main entities:
 
-* Doctors
-* Patients
-* Departments
-* Appointments
+* Doctor
+* Department
+* Patient
+* Appointment
+
+Appointment Flow
+
+```text
+Patient
+   ↓
+Select Doctor
+   ↓
+Select Date & Time
+   ↓
+Enter Patient Information
+   ↓
+Appointment Created
+   ↓
+Status: Pending
+   ↓
+Admin Manages Appointment
+```
 
 How to Run
 
 1. Clone or download the repository.
-2. Open the project in **Visual Studio**.
-3. Restore NuGet packages.
-4. Create/restore the SQL Server database.
-5. Update the connection string in `Web.config`.
-6. Build the solution.
-7. Run the project using Visual Studio.
+2. Open the solution in **Visual Studio**.
+3. Restore the required NuGet packages.
+4. Create the SQL Server database.
+5. Update the database connection string in `Web.config`.
+6. Build the project.
+7. Run the application using Visual Studio.
 
-Project Purpose
+> `Web.config` is not included in this repository because the database connection is specific to the local development environment.
 
-This project was developed as a practical ASP.NET MVC project to demonstrate CRUD operations, Entity Framework, SQL Server integration, MVC architecture, session/data handling and admin dashboard development.
+Project Structure
+
+```text
+Controllers/
+Models/
+ViewModels/
+Views/
+App_Start/
+Admin-assets/
+assets/
+Content/
+Scripts/
+```
+
+Purpose
+
+This project was developed as a practical **ASP.NET MVC** project to demonstrate MVC architecture, Entity Framework, SQL Server integration, database relationships, appointment management, validation, and admin dashboard development.
 
 Author
 
 **Asfand Khan**
 
-GitHub: ASFANDKHAN18
+Built as an ASP.NET MVC project for learning and portfolio development.
