@@ -48,7 +48,7 @@ Doctors
 
 Admin can view registered doctors along with their department and information.
 
-### Departments
+Departments
 
 Manage and display hospital departments.
 
